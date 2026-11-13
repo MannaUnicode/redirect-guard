@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 import { parseCsv, parseCsvMap, detectDelimiter } from '../src/input/csv.js';
 import { loadMap } from '../src/input/load-map.js';
 import { InputError } from '../src/errors.js';
@@ -95,7 +96,7 @@ test('parseCsv keeps empty cells and handles a trailing newline-less row', () =>
 });
 
 test('loadMap reads files by extension and assigns ids', async () => {
-  const entries = await loadMap(new URL(fx('basic.csv')).pathname, { base: BASE });
+  const entries = await loadMap(fileURLToPath(fx('basic.csv')), { base: BASE });
   assert.deepEqual(
     entries.map((e) => e.id),
     [1, 2, 3],

@@ -8,7 +8,6 @@
     "skipLibCheck": false,
     "lib": ["ES2022", "DOM"],
     "types": [],
-    "baseUrl": ".",
     "paths": {
       "redirect-guard": ["./index.d.ts"]
     }
