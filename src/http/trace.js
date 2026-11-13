@@ -5,7 +5,7 @@ import { request, ACCEPT } from './request.js';
 import { withRetry } from './retry.js';
 import { createPool } from './pool.js';
 
-export const DEFAULT_USER_AGENT = `redirect-guard/${version} (+https://github.com/OWNER/redirect-guard)`;
+export const DEFAULT_USER_AGENT = `redirect-guard/${version} (+https://github.com/MannaUnicode/redirect-guard)`;
 
 /**
  * @typedef {object} Hop

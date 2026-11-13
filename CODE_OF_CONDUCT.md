@@ -36,7 +36,7 @@ represents the project in public.
 
 Report problems privately to the maintainers through GitHub: use the "Report content"
 option on the comment or issue, or open a
-[private security advisory](https://github.com/OWNER/redirect-guard/security/advisories/new)
+[private security advisory](https://github.com/MannaUnicode/redirect-guard/security/advisories/new)
 and mark it as a conduct report. Reports are reviewed promptly and handled confidentially.
 
 ## Enforcement

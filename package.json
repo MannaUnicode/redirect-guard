@@ -52,11 +52,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OWNER/redirect-guard.git"
+    "url": "git+https://github.com/MannaUnicode/redirect-guard.git"
   },
-  "homepage": "https://github.com/OWNER/redirect-guard#readme",
+  "homepage": "https://github.com/MannaUnicode/redirect-guard#readme",
   "bugs": {
-    "url": "https://github.com/OWNER/redirect-guard/issues"
+    "url": "https://github.com/MannaUnicode/redirect-guard/issues"
   },
   "devDependencies": {
     "typescript": "~5.9.0"

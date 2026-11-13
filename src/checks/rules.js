@@ -1,4 +1,4 @@
-export const DOCS_URL = 'https://github.com/OWNER/redirect-guard/blob/main/docs/rules.md';
+export const DOCS_URL = 'https://github.com/MannaUnicode/redirect-guard/blob/main/docs/rules.md';
 
 /**
  * @typedef {'error' | 'warn' | 'off'} Severity

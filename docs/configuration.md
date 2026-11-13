@@ -47,7 +47,7 @@ export default defineConfig({
 | `delay` | `--delay <ms>` | `0` | Minimum gap between requests to the same origin. |
 | `timeout` | `--timeout <ms>` | `15000` | Per request. |
 | `retries` | `--retries <n>` | `2` | Retries on 429, 503 and transient network errors (0-5). |
-| `userAgent` | `--user-agent <s>` | `redirect-guard/<version> (+https://github.com/OWNER/redirect-guard)` | |
+| `userAgent` | `--user-agent <s>` | `redirect-guard/<version> (+https://github.com/MannaUnicode/redirect-guard)` | |
 | `headers` | `--header "K: V"` | `{}` | Extra headers, sent only to in-scope origins. |
 | (none) | `--auth-env <NAME>` | | Env var holding `user:pass`, sent as Basic auth to in-scope origins. |
 | `robotsAgent` | `--robots-agent <token>` | `googlebot` | robots.txt group and meta tag name to evaluate. |

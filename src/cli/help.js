@@ -60,7 +60,7 @@ Config
 Exit codes
   0 no failures · 1 failures found · 2 usage, config or input error
 
-Docs: https://github.com/OWNER/redirect-guard#readme
+Docs: https://github.com/MannaUnicode/redirect-guard#readme
 `;
 }
 

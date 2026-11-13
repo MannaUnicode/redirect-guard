@@ -12,7 +12,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/redirect-guard"><img src="https://img.shields.io/npm/v/redirect-guard?color=0f766e" alt="npm"></a>
-  <a href="https://github.com/OWNER/redirect-guard/actions/workflows/ci.yml"><img src="https://github.com/OWNER/redirect-guard/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/MannaUnicode/redirect-guard/actions/workflows/ci.yml"><img src="https://github.com/MannaUnicode/redirect-guard/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="package.json"><img src="https://img.shields.io/node/v/redirect-guard" alt="node"></a>
   <a href="package.json"><img src="https://img.shields.io/badge/dependencies-0-0f766e" alt="dependencies: 0"></a>
   <a href="LICENSE"><img src="https://img.shields.io/npm/l/redirect-guard" alt="license: MIT"></a>
@@ -99,7 +99,7 @@ redirect-guard 0.1.0 · 10 URLs from redirects.csv · base https://www.example.c
    wrong-destination        1  error
 
  ✖ 3 entries failed. Exit code 1.
- Rule docs: https://github.com/OWNER/redirect-guard/blob/main/docs/rules.md
+ Rule docs: https://github.com/MannaUnicode/redirect-guard/blob/main/docs/rules.md
 ```
 <!-- demo:end -->
 

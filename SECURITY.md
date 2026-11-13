@@ -7,7 +7,7 @@ Security fixes are released for the latest minor version on npm.
 ## Reporting a vulnerability
 
 Please do not open a public issue. Use GitHub private vulnerability reporting:
-[Report a vulnerability](https://github.com/OWNER/redirect-guard/security/advisories/new).
+[Report a vulnerability](https://github.com/MannaUnicode/redirect-guard/security/advisories/new).
 You will get an answer within a few days, and a fix or mitigation plan as soon as the issue
 is confirmed. Credit is given in the advisory unless you prefer otherwise.
 

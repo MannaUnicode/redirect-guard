@@ -134,7 +134,7 @@ test('markdown reporter: marker, summary table, failures, warnings in details', 
   assert.match(md, /\| 4 \| 1 \| 1 \| 2 \| \d+\.\ds \|/);
   assert.match(md, /\| `\/chi-siamo` \| 301 → 302 `\/about\/` → 200 `\/about` \| \*\*wrong-destination\*\* Ends at \/about, expected \/team/);
   assert.match(md, /<details><summary>1 warning<\/summary>/);
-  assert.match(md, /\[rule docs\]\(https:\/\/github\.com\/OWNER\/redirect-guard\/blob\/main\/docs\/rules\.md\)/);
+  assert.match(md, /\[rule docs\]\(https:\/\/github\.com\/MannaUnicode\/redirect-guard\/blob\/main\/docs\/rules\.md\)/);
   assert.equal(escapeCell('a|b `c`\nd <e>'), "a\\|b 'c' d &lt;e>");
 });
 
