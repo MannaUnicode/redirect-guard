@@ -59,7 +59,7 @@
     "url": "https://github.com/MannaUnicode/redirect-guard/issues"
   },
   "devDependencies": {
-    "typescript": "~5.9.0"
+    "typescript": "~7.0.2"
   },
   "publishConfig": {
     "access": "public",
