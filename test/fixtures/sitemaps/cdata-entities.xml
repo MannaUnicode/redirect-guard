@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc><![CDATA[https://www.example.com/a?x=1&y=2]]></loc></url>
+  <url><loc>https://www.example.com/caf&#233;</loc></url>
+  <url><loc>https://www.example.com/q&apos;s</loc></url>
+</urlset>

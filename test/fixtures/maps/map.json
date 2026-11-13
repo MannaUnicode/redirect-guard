@@ -1,0 +1,5 @@
+[
+  { "from": "/a", "to": "/b" },
+  { "from": "/gone", "status": 410 },
+  { "from": "https://old.example.com/x", "to": "/y", "status": "permanent" }
+]

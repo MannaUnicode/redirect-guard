@@ -1,0 +1,7 @@
+{
+  "$schema": "https://unpkg.com/redirect-guard@0/schema/config.schema.json",
+  "base": "https://www.example.com",
+  "maxHops": 2,
+  "exclude": ["/wp-admin/**"],
+  "rules": { "redirect-to-homepage": "error" }
+}

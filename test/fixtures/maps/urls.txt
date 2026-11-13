@@ -1,0 +1,5 @@
+# exported from Search Console
+https://www.example.com/one
+/two
+
+/three?x=1

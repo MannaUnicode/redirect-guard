@@ -1,0 +1,58 @@
+# Copy to .github/workflows/redirects.yml and adapt.
+# Variant 1 checks a deploy preview before launch (production URLs rewritten to the preview).
+# Variant 2 runs every week against production as a regression test.
+name: Redirects
+
+on:
+  pull_request:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    env:
+      # Set this to your preview URL, e.g. from a previous deploy step's output.
+      PREVIEW_URL: https://staging.example.com
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Check redirects against the preview
+        env:
+          # "user:pass" for a protected preview. Remove --auth-env below if it is public.
+          STAGING_AUTH: ${{ secrets.STAGING_AUTH }}
+        run: >
+          npx --yes redirect-guard@0 redirects.csv
+          --host-rewrite "https://www.example.com=$PREVIEW_URL"
+          --auth-env STAGING_AUTH
+          --reporter text
+          --reporter markdown:rg.md
+          --reporter junit:redirect-guard.xml
+      - name: Job summary
+        if: always()
+        run: test -f rg.md && cat rg.md >> "$GITHUB_STEP_SUMMARY" || true
+      - name: Upload JUnit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: redirect-guard-junit
+          path: redirect-guard.xml
+          if-no-files-found: ignore
+
+  production:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Check redirects on production
+        run: npx --yes redirect-guard@0 redirects.csv --base https://www.example.com --concurrency 2

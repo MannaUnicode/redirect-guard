@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unpkg.com/redirect-guard@0/schema/config.schema.json",
+  "title": "redirect-guard configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "origin": { "type": "string", "pattern": "^https?://" },
+    "severity": { "enum": ["error", "warn", "off"] },
+    "ruleId": {
+      "enum": [
+        "request-failed", "redirect-loop", "too-many-redirects", "no-redirect", "status-not-permanent",
+        "wrong-destination", "unexpected-status", "target-not-ok", "target-noindex", "canonical-mismatch",
+        "robots-blocked", "robots-unreachable", "chain-too-long", "trailing-slash-hop", "redirect-to-homepage",
+        "redirect-collapse", "query-dropped", "protocol-inconsistent", "host-inconsistent", "location-relative",
+        "sitemap-url-redirects", "sitemap-url-not-indexable", "orphan-url"
+      ]
+    },
+    "rules": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/ruleId" },
+      "additionalProperties": { "$ref": "#/$defs/severity" }
+    },
+    "statusList": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "integer", "minimum": 300, "maximum": 399 }
+    }
+  },
+  "properties": {
+    "$schema": { "type": "string" },
+    "base": { "description": "New site origin. Relative paths resolve against it.", "anyOf": [{ "$ref": "#/$defs/origin" }, { "type": "null" }] },
+    "map": { "description": "Redirect map file (CSV, TSV, JSON, TXT), relative to this config file.", "type": ["string", "null"] },
+    "sitemap": { "description": "Old sitemap URL or file.", "type": ["string", "null"] },
+    "hostRewrite": {
+      "description": "Send requests for origin A to origin B, e.g. production to staging.",
+      "type": "object",
+      "propertyNames": { "pattern": "^(https?://|\\$env:)" },
+      "additionalProperties": { "type": "string" }
+    },
+    "expectStatus": { "description": "Accepted redirect statuses when a row has none.", "$ref": "#/$defs/statusList", "default": [301, 308] },
+    "maxHops": { "type": "integer", "minimum": 0, "maximum": 50, "default": 1 },
+    "maxRedirects": { "type": "integer", "minimum": 1, "maximum": 50, "default": 10 },
+    "concurrency": { "type": "integer", "minimum": 1, "maximum": 32, "default": 4 },
+    "delay": { "description": "Minimum gap in ms between requests to the same origin.", "type": "integer", "minimum": 0, "default": 0 },
+    "timeout": { "description": "Per-request timeout in ms.", "type": "integer", "minimum": 1, "default": 15000 },
+    "retries": { "type": "integer", "minimum": 0, "maximum": 5, "default": 2 },
+    "userAgent": { "type": ["string", "null"], "default": null },
+    "headers": {
+      "description": "Extra request headers, sent only to in-scope origins. Values may use $env:NAME.",
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "robotsAgent": { "type": "string", "default": "googlebot" },
+    "indexability": { "type": "boolean", "default": true },
+    "robots": { "type": "boolean", "default": true },
+    "ignoreTrailingSlash": { "type": "boolean", "default": false },
+    "ignoreQuery": { "type": "boolean", "default": false },
+    "preserveQuery": { "type": "boolean", "default": false },
+    "collapseThreshold": { "type": "integer", "minimum": 2, "default": 10 },
+    "include": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "exclude": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "limit": { "type": ["integer", "null"], "minimum": 1, "default": null },
+    "failOn": { "enum": ["error", "warn"], "default": "error" },
+    "rules": { "$ref": "#/$defs/rules" },
+    "overrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["match"],
+        "additionalProperties": false,
+        "properties": {
+          "match": { "type": "string", "description": "Glob over the pathname + search of the old URL." },
+          "maxHops": { "type": "integer", "minimum": 0 },
+          "expectStatus": { "$ref": "#/$defs/statusList" },
+          "rules": { "$ref": "#/$defs/rules" },
+          "ignoreTrailingSlash": { "type": "boolean" },
+          "ignoreQuery": { "type": "boolean" },
+          "preserveQuery": { "type": "boolean" },
+          "indexability": { "type": "boolean" },
+          "robots": { "type": "boolean" },
+          "collapseThreshold": { "type": "integer", "minimum": 2 }
+        }
+      }
+    },
+    "reporters": {
+      "description": "name or name:file, e.g. \"junit:reports/redirect-guard.xml\".",
+      "type": "array",
+      "items": { "type": "string", "pattern": "^(text|json|markdown|junit|github)(:.+)?$" },
+      "default": ["text"]
+    },
+    "maxBodyBytes": { "description": "Bytes of the final HTML read for meta and canonical.", "type": "integer", "minimum": 1024, "default": 524288 }
+  }
+}

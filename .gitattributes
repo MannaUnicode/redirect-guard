@@ -1,0 +1,4 @@
+* text=auto eol=lf
+*.gz binary
+*.png binary
+test/fixtures/maps/bom.csv -text

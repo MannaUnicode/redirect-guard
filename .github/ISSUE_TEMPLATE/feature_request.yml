@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest a check, an input format, a reporter or another improvement.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What goes wrong in a real migration that redirect-guard does not catch or makes hard?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: How you would like it to work (flags, config, output).
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and workarounds
+  - type: checkboxes
+    id: deps
+    attributes:
+      label: Constraints
+      options:
+        - label: I understand redirect-guard has zero runtime dependencies and no telemetry.
+          required: true

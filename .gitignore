@@ -1,0 +1,11 @@
+node_modules/
+coverage/
+*.tgz
+pack.json
+notes.md
+reports/
+rg.md
+rg.xml
+redirect-guard.xml
+.DS_Store
+*.log

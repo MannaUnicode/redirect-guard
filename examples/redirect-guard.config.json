@@ -1,0 +1,15 @@
+{
+  "$schema": "https://unpkg.com/redirect-guard@0/schema/config.schema.json",
+  "base": "https://www.example.com",
+  "map": "redirects.csv",
+  "maxHops": 1,
+  "exclude": ["/wp-admin/**", "/feed/**"],
+  "rules": {
+    "redirect-to-homepage": "error",
+    "location-relative": "off"
+  },
+  "overrides": [
+    { "match": "/blog/**", "maxHops": 2, "rules": { "canonical-mismatch": "warn" } }
+  ],
+  "reporters": ["text", "junit:reports/redirect-guard.xml"]
+}

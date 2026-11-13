@@ -1,0 +1,14 @@
+user-agent: googlebot
+allow: /p
+disallow: /
+
+user-agent: googlebot-news
+disallow: /fish*.php
+
+user-agent: *
+allow: /$
+disallow: /
+allow: /folder
+disallow: /folder
+allow: /page
+disallow: /*.htm

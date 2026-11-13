@@ -1,0 +1,5 @@
+from,to,status
+/chi-siamo,/about,
+/servizi/seo,/services/seo,301
+# removed on purpose
+/vecchia-promo,,410

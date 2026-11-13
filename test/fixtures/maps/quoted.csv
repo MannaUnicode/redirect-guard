@@ -1,0 +1,3 @@
+target,source
+"/new,with-comma","/old ""quoted"""
+/plain-new,/plain-old

@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unpkg.com/redirect-guard@0/schema/report.schema.json",
+  "title": "redirect-guard JSON report (schemaVersion 1)",
+  "type": "object",
+  "required": ["schemaVersion", "tool", "startedAt", "durationMs", "options", "summary", "results", "groups", "diff"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "tool": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": { "name": { "const": "redirect-guard" }, "version": { "type": "string" } }
+    },
+    "startedAt": { "type": "string" },
+    "durationMs": { "type": "integer" },
+    "input": {
+      "type": "object",
+      "required": ["kind", "label"],
+      "properties": { "kind": { "enum": ["map", "sitemap", "entries", "diff"] }, "label": { "type": ["string", "null"] } }
+    },
+    "options": {
+      "type": "object",
+      "required": ["base", "maxHops", "expectStatus", "headers"],
+      "properties": {
+        "base": { "type": ["string", "null"] },
+        "maxHops": { "type": "integer" },
+        "expectStatus": { "type": "array", "items": { "type": "integer" } },
+        "headers": { "type": "object", "additionalProperties": { "const": "***" } }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["total", "ok", "warn", "fail", "byRule"],
+      "properties": {
+        "total": { "type": "integer" },
+        "ok": { "type": "integer" },
+        "warn": { "type": "integer" },
+        "fail": { "type": "integer" },
+        "byRule": { "type": "object", "additionalProperties": { "type": "integer" } }
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "source", "from", "expected", "status", "chain", "final", "issues"],
+        "properties": {
+          "id": { "type": "integer" },
+          "source": { "type": "string" },
+          "from": { "type": "string" },
+          "role": { "enum": ["removed", "new"] },
+          "expected": {
+            "type": "object",
+            "required": ["to", "status", "mode"],
+            "properties": {
+              "to": { "type": ["string", "null"] },
+              "status": { "type": ["array", "null"], "items": { "type": "integer" } },
+              "mode": { "enum": ["redirect", "gone", "any", "present"] }
+            }
+          },
+          "status": { "enum": ["ok", "warn", "fail"] },
+          "chain": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["url", "requestedUrl", "status", "location", "durationMs", "attempts", "error"],
+              "properties": {
+                "url": { "type": "string" },
+                "requestedUrl": { "type": ["string", "null"] },
+                "status": { "type": ["integer", "null"] },
+                "location": { "type": ["string", "null"] },
+                "durationMs": { "type": ["integer", "null"] },
+                "attempts": { "type": "integer" },
+                "error": {
+                  "type": ["object", "null"],
+                  "required": ["code", "message"],
+                  "properties": { "code": { "type": "string" }, "message": { "type": "string" } }
+                }
+              }
+            }
+          },
+          "final": {
+            "type": ["object", "null"],
+            "required": ["url", "status", "indexability"],
+            "properties": {
+              "url": { "type": "string" },
+              "status": { "type": "integer" },
+              "indexability": {
+                "type": ["object", "null"],
+                "required": ["robotsMeta", "xRobotsTag", "canonical", "robotsAllowed"],
+                "properties": {
+                  "robotsMeta": { "type": "array", "items": { "type": "string" } },
+                  "xRobotsTag": { "type": "array", "items": { "type": "string" } },
+                  "canonical": { "type": ["string", "null"] },
+                  "robotsAllowed": { "type": ["boolean", "null"] }
+                }
+              }
+            }
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["rule", "severity", "message", "details"],
+              "properties": {
+                "rule": { "type": "string" },
+                "severity": { "enum": ["error", "warn"] },
+                "message": { "type": "string" },
+                "details": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "groups": {
+      "type": "object",
+      "required": ["collapse"],
+      "properties": {
+        "collapse": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["target", "count", "ids"],
+            "properties": {
+              "target": { "type": "string" },
+              "count": { "type": "integer" },
+              "ids": { "type": "array", "items": { "type": "integer" } }
+            }
+          }
+        }
+      }
+    },
+    "diff": {
+      "type": ["object", "null"],
+      "required": ["kept", "removed", "added", "removedUrls", "addedUrls"],
+      "properties": {
+        "kept": { "type": "integer" },
+        "removed": { "type": "integer" },
+        "added": { "type": "integer" },
+        "removedUrls": { "type": "array", "items": { "type": "string" } },
+        "addedUrls": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "warnings": { "type": "array", "items": { "type": "string" } }
+  }
+}

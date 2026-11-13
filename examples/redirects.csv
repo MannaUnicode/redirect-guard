@@ -1,0 +1,12 @@
+from,to,status
+# Old Italian URLs moved to new English paths
+/chi-siamo,/about,
+/servizi/seo,/services/seo,
+/servizi/siti-web,/services/websites,301
+/contatti,/contact,
+# Domain move: absolute URLs are fine
+http://vecchio-dominio.it/portfolio,https://www.example.com/work,
+# Removed on purpose: must answer 410 (or 404)
+/promo-estate-2023,,410
+# Unchanged: must keep answering 200 without redirecting
+/privacy,,200

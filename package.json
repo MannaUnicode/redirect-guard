@@ -1,0 +1,68 @@
+{
+  "name": "redirect-guard",
+  "version": "0.1.0",
+  "description": "Test a site migration before Google does: check a redirect map or old sitemap against the live site and catch broken 301s, chains, loops and non-indexable targets, from the CLI or CI.",
+  "type": "module",
+  "bin": {
+    "redirect-guard": "bin/redirect-guard.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "types": "./types/index.d.ts",
+  "files": [
+    "bin/",
+    "src/",
+    "types/index.d.ts",
+    "schema/",
+    "README.it.md",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=20.3"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "test": "node --test",
+    "test:coverage": "node --test --experimental-test-coverage",
+    "typecheck": "tsc -p types/tsconfig.json",
+    "demo": "node scripts/demo.js",
+    "prepublishOnly": "npm test && npm run typecheck"
+  },
+  "keywords": [
+    "redirect",
+    "redirects",
+    "301",
+    "seo",
+    "site-migration",
+    "migration",
+    "sitemap",
+    "robots-txt",
+    "canonical",
+    "noindex",
+    "ci",
+    "cli",
+    "technical-seo"
+  ],
+  "author": "Unicodeit",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OWNER/redirect-guard.git"
+  },
+  "homepage": "https://github.com/OWNER/redirect-guard#readme",
+  "bugs": {
+    "url": "https://github.com/OWNER/redirect-guard/issues"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
