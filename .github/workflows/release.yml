@@ -29,8 +29,17 @@ jobs:
           fi
       # Trusted publishing (OIDC) is preferred: configure it on npmjs.com for this
       # repository and workflow. NODE_AUTH_TOKEN is only a fallback if it is not set up.
+      # If this version is already on npm (for example the first release was
+      # published by hand), skip publishing and only create the GitHub release.
       - name: Publish to npm with provenance
-        run: npm publish --provenance --access public
+        run: |
+          NAME="$(node -p 'require("./package.json").name')"
+          VERSION="$(node -p 'require("./package.json").version')"
+          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "$NAME@$VERSION is already on npm, skipping publish"
+          else
+            npm publish --provenance --access public
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Create GitHub release from the CHANGELOG section
